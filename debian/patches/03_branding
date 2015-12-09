@@ -1,0 +1,97 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 03_branding.dpatch by  <egon@localhost.localdomain>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+Index: aptitude-0.6.11/section-descriptions
+===================================================================
+--- aptitude-0.6.11.orig/section-descriptions
++++ aptitude-0.6.11/section-descriptions
+@@ -22,13 +22,13 @@ Aptitude::Sections
+ 
+     admin	"Administrative utilities (install software, manage users, etc)\n Packages in the 'admin' section allow you to perform administrative tasks such as installing software, managing users, configuring and monitoring your system, examining network traffic, and so on.";
+     alien	"Packages converted from foreign formats (rpm, tgz, etc)\n Packages in the 'alien' section were created by the 'alien' program from a non-Debian package format such as RPM";
+-    base	"The Debian base system\n Packages in the 'base' section are part of the initial system installation.";
++    base	"The Ubuntu base system\n Packages in the 'base' section are part of the initial system installation.";
+     cli-mono	"Mono and the Common Language Infrastructure\n Packages in the 'cli-mono' section provide open source implementation of Microsoft's .NET development framework based on the ECMA standards for C# and the Common Language Runtime.  Unless you are a .NET programmer, you don't need to install packages from this section explicitly; the package system will install them if they are required.";
+     comm	"Programs for faxmodems and other communication devices\n Packages in the 'comm' section are used to control modems and other hardware communications devices. This includes software to control faxmodems (for instance, PPP for dial-up internet connections and programs originally written for that purpose, such as zmodem/kermit), as well as software to control cellular phones, interface with FidoNet, and run a BBS.";
+     database	"Database servers and tools\n Packages in the 'database' section contain database engines such as PostgreSQL and SQLite, database clients, and database management tools.";
+     debug	"Debugging symbols\n Packages in the 'debug' section contain files required for debugging programs.  You don't need packages from this section unless you want to debug a particular piece of software.";
+     devel	"Utilities and programs for software development\n Packages in the 'devel' section are used to write new software and work on existing software. Non-programmers who do not compile their own software probably do not need much software from this section.\n .\n It includes compilers, debugging tools, programmer's editors, source processing tools, and other things related to software development.";
+-    doc		"Documentation and specialized programs for viewing documentation\n Packages in the 'doc' section document parts of the Debian system, or are viewers for documentation formats.";
++    doc		"Documentation and specialized programs for viewing documentation\n Packages in the 'doc' section document parts of the Ubuntu system, or are viewers for documentation formats.";
+     editors	"Text editors and word processors\n Packages in the 'editors' section allow you to edit plain ASCII text. These are not necessarily word processors, although some word processors may be found in this section.";
+     education	"Software, documentation or data related to educational activities\n Packages in the 'education' section are related to educational activities.";
+     electronics	"Programs for working with circuits and electronics\n Packages in the 'electronics' section include circuit design tools, simulators and assemblers for microcontrollers, and other related software.";
+@@ -58,7 +58,7 @@ Aptitude::Sections
+     net		"Programs to connect to and provide various services\n Packages in the 'net' section include clients and servers for many protocols, tools to manipulate and debug low-level network protocols, IM systems, and other network-related software.";
+     news	"Usenet clients and servers\n Packages in the 'news' section are related to the Usenet distributed news system.  They include news readers and news servers.";
+     ocaml	"OCaml programming language and libraries\n Packages in the 'ocaml' section provide the OCaml programming language and many third-party libraries for it. Unless you are a OCaml programmer, you don't need to install packages from this section explicitly; the package system will install them if they are required.";
+-    oldlibs	"Obsolete libraries\n Packages in the 'oldlibs' section are obsolete and should not be used by new software.  They are provided for compatibility reasons, or because software distributed by Debian still requires them.\n .\n With very few exceptions, you should not need to explicitly install a package from this section; the package system will install them as required to fulfill dependencies.";
++    oldlibs	"Obsolete libraries\n Packages in the 'oldlibs' section are obsolete and should not be used by new software.  They are provided for compatibility reasons, or because software distributed by Ubuntu still requires them.\n .\n With very few exceptions, you should not need to explicitly install a package from this section; the package system will install them as required to fulfill dependencies.";
+     otherosfs	"Emulators and software to read foreign filesystems\n Packages in the 'otherosfs' section emulate hardware and operating systems and provide tools for transferring data between different operating systems and hardware platforms. (for instance, utilities to read DOS floppies, and utilities to communicate with Palm Pilots)\n .\n It is worth noting that CD burning software is included in THIS section.";
+     perl	"Perl programming language and libraries\n Packages in the 'perl' section provide the Perl programming language and many third-party libraries for it. Unless you are a Perl programmer, you don't need to install packages from this section explicitly; the package system will install them if they are required.";
+     php		"PHP programming language and libraries\n Packages in the 'php' section provide the PHP programming language and many third-party libraries for it. Unless you are a PHP programmer, you don't need to install packages from this section explicitly; the package system will install them if they are required.";
+@@ -77,9 +77,10 @@ Aptitude::Sections
+     xfce	"The Xfce Desktop Environment\n Xfce is a collection of software which provides an easy-to-use desktop.  Packages in the 'xfce' section are part of the Xfce environment or closely integrated into it.";
+     zope	"Zope/Plone framework\n Packages in the 'zope' section provide application server for building content management systems, intranets, portals, and custom applications. One such a content management system build upon Zope is Plone.";
+ 
+-    main	"The main Debian archive\n The Debian distribution consists of packages from the 'main' section. Every package in 'main' is Free Software.\n .\n For more information about what Debian considers to be Free Software, see http://www.debian.org/social_contract#guidelines";
+-    contrib	"Programs which depend on software not in Debian\n Packages in the 'contrib' section are not part of Debian.\n .\n These packages are Free Software, but they depend on software which is not part of Debian.  This may be because it is not Free Software, but is packaged in the non-free section of the archive, because Debian cannot distribute it at all, or (in rare cases) because no-one has packaged it yet.\n .\n For more information about what Debian considers to be Free Software, see http://www.debian.org/social_contract#guidelines";
+-    non-free	"Programs which are not free software\n Packages in the 'non-free' section are not part of Debian.\n .\n These packages fail to meet one or more of the requirements of the Debian Free Software Guidelines (see below). You should read the license of programs in this section to be sure that you are allowed to use them in the way you intend.\n .\n For more information about what Debian considers to be Free Software, see http://www.debian.org/social_contract#guidelines";
+-    non-US	"Programs stored outside the US due to export controls\n Packages in 'non-US' likely contain cryptography; a few implement patented algorithms. Because of this, they cannot be exported from the United States, and hence are stored on a server in the ''free world''.\n .\n Note: the Debian Project is currently merging cryptographic software into the US-based archives after consulting with legal experts about recent changes in export policies. Most packages which were formerly found in this section, therefore, are now in 'main'.";
++
++    main        "Fully supported Free Software.\n .\nUbuntu software in the \"main\" component is fully supported, and is Free Software. Not only is this software freely available, it comes with signficant rights for you to modify it, improve it and share it. Read more about the Ubuntu manifesto and licence policy at http://www.ubuntulinux.org/ubuntu/licensing/";
++    restricted  "Binary-only device drivers.\n .\nThe \"restricted\" component of Ubuntu consists of device drivers that are only available in binary form, and cannot be modified. We provide these solely because it is the only way to make the rest of Ubuntu run on certain hardware, we recommend you determine whether or not you need this, and if not, to remove it.";
++    universe    "Unsupported Free Software.\n .\nUbuntu software in the \"universe\" component is Free Software, but does not receive the same level of testing and polish that software in the \"main\" component receives. The Ubuntu team does not review this software for security, nor does it provide any assurance of ongoing security updates after release.";
++    multiverse  "Unsupported Non-free Software.\n .\nSoftware in the \"multiverse\" component has not been determined to be Free Software, please make certain that you verify your rights to use this software and comply with the licensing terms of the copyright holder. This software receives no support and usually cannot be fixed or updated. Use it at your own risk on your own advice.";
+   };
+ };
+Index: aptitude-0.6.11/src/gtk/previewtab.cc
+===================================================================
+--- aptitude-0.6.11.orig/src/gtk/previewtab.cc
++++ aptitude-0.6.11/src/gtk/previewtab.cc
+@@ -94,7 +94,7 @@ namespace gui
+   // be in common code.
+   const char * const PreviewView::Generator::child_names[num_pkg_action_states]=
+     {
+-      N_("Packages with unsatisfied dependencies\n The dependency requirements of these packages will be unmet after the install is complete.\n .\n The presence of this tree probably indicates that something is broken, either on your system or in the Debian archive."),
++      N_("Packages with unsatisfied dependencies\n The dependency requirements of these packages will be unmet after the install is complete.\n .\n The presence of this tree probably indicates that something is broken, either on your system or in the Ubuntu archive."),
+       N_("Packages being removed because they are no longer used\n These packages are being deleted because they were automatically installed to fulfill dependencies, and the planned action will result in no installed package declaring an 'important' dependency on them.\n"),
+       N_("Packages being automatically held in their current state\n These packages could be upgraded, but they have been kept in their current state to avoid breaking dependencies."),
+       N_("Packages being automatically installed to satisfy dependencies\n These packages are being installed because they are required by another package you have chosen for installation."),
+Index: aptitude-0.6.11/src/pkg_grouppolicy.cc
+===================================================================
+--- aptitude-0.6.11.orig/src/pkg_grouppolicy.cc
++++ aptitude-0.6.11/src/pkg_grouppolicy.cc
+@@ -464,9 +464,9 @@ public:
+ 
+ const char * const pkg_grouppolicy_status::state_titles[numgroups] =
+ {
+-  N_("Security Updates\n Security updates for these packages are available from security.debian.org."),
++  N_("Security Updates\n Security updates for these packages are available from security.ubuntu.com."),
+   N_("Upgradable Packages\n A newer version of these packages is available."),
+-  N_("New Packages\n These packages have been added to Debian since the last time you cleared the list of \"new\" packages (choose \"Forget new packages\" from the Actions menu to empty this list)."),
++  N_("New Packages\n These packages have been added to Ubuntu since the last time you cleared the list of \"new\" packages (choose \"Forget new packages\" from the Actions menu to empty this list)."),
+   N_("Installed Packages\n These packages are currently installed on your computer."),
+   N_("Not Installed Packages\n These packages are not installed on your computer."),
+   N_("Obsolete and Locally Created Packages\n These packages are currently installed on your computer, but they are not available from any apt source.  They may be obsolete and removed from the archive, or you may have built a private version of them yourself."),
+@@ -488,7 +488,7 @@ pkg_grouppolicy *pkg_grouppolicy_status_
+ static bool version_is_security(const pkgCache::VerIterator &ver)
+ {
+   for(pkgCache::VerFileIterator F=ver.FileList(); !F.end(); ++F)
+-    if(string(F.File().Site())=="security.debian.org")
++    if(string(F.File().Site())=="security.ubuntu.com")
+       return true;
+ 
+   return false;
+@@ -674,7 +674,7 @@ public:
+ 
+ const char * const pkg_grouppolicy_mode::child_names[num_pkg_action_states]=
+ {
+-  N_("Packages with unsatisfied dependencies\n The dependency requirements of these packages will be unmet after the install is complete.\n .\n The presence of this tree probably indicates that something is broken, either on your system or in the Debian archive."),
++  N_("Packages with unsatisfied dependencies\n The dependency requirements of these packages will be unmet after the install is complete.\n .\n The presence of this tree probably indicates that something is broken, either on your system or in the Ubuntu archive."),
+   N_("Packages being removed because they are no longer used\n These packages are being deleted because they were automatically installed to fulfill dependencies, and the planned action will result in no installed package declaring an 'important' dependency on them.\n"),
+   N_("Packages being automatically held in their current state\n These packages could be upgraded, but they have been kept in their current state to avoid breaking dependencies."),
+   N_("Packages being automatically installed to satisfy dependencies\n These packages are being installed because they are required by another package you have chosen for installation."),

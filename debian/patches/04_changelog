@@ -1,0 +1,89 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 04_changelog.dpatch by  <egon@localhost.localdomain>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: No description.
+
+Index: b/src/apt_options.cc
+===================================================================
+--- a/src/apt_options.cc
++++ b/src/apt_options.cc
+@@ -296,7 +296,7 @@
+ 		 "should only need to change this if the changelogs move "
+ 		 "to a different URL."),
+ 	      "APT::Changelogs::Server",
+-	      "http://packages.debian.org/changelogs"),
++	      "http://changelogs.ubuntu.com/changelogs"),
+   option_item(N_("Display a preview of what will be done before doing it"),
+ 	      N_("If this option is enabled, then when you ask "
+ 		 "aptitude to perform an install run, it will "
+Index: b/src/cmdline/cmdline_changelog.cc
+===================================================================
+--- a/src/cmdline/cmdline_changelog.cc
++++ b/src/cmdline/cmdline_changelog.cc
+@@ -293,7 +293,7 @@
+ 
+   if(access("/usr/bin/sensible-pager", X_OK)!=0)
+     {
+-      _error->Warning(_("Can't execute sensible-pager, is this a working Debian system?"));
++      _error->Warning(_("Can't execute sensible-pager, is this a working Ubuntu system?"));
+ 
+       pager=getenv("PAGER");
+ 
+@@ -338,13 +338,12 @@
+ 	      for(pkgCache::VerFileIterator vf=ver.FileList();
+ 		  !vf.end() && !in_debian; ++vf)
+ 		if(!vf.File().end() && vf.File().Origin()!=NULL &&
+-		   (strcmp(vf.File().Origin(), "Debian")==0 ||
+-		    strcmp(vf.File().Origin(), "Debian Backports")==0))
++		   (strcmp(vf.File().Origin(), "Ubuntu")==0))
+ 		  in_debian=true;
+ 
+ 	      if(!in_debian)
+ 		{
+-		  _error->Error(_("%s is not an official Debian package, cannot display its changelog."), input.c_str());
++		  _error->Error(_("%s is not an official Ubuntu package, cannot display its changelog."), input.c_str());
+ 		  continue;
+ 		}
+ 
+Index: b/src/generic/apt/pkg_changelog.cc
+===================================================================
+--- a/src/generic/apt/pkg_changelog.cc
++++ b/src/generic/apt/pkg_changelog.cc
+@@ -545,14 +545,14 @@
+ 
+               // WATCH: apt/cmdline/apt-get.cc(DownloadChangelog)
+               string server = aptcfg->Find("APT::Changelogs::Server",
+-                                           "http://metadata.ftp-master.debian.org/changelogs");
+-	      string path = cw::util::ssprintf("%s/%s/%s/%s_%s",
++                                           "http://changelogs.ubuntu.com/changelogs");
++	      string path = cw::util::ssprintf("pool/%s/%s/%s/%s_%s",
+ 					      realsection.c_str(),
+ 					      prefix.c_str(),
+ 					      source_package.c_str(),
+ 					      source_package.c_str(),
+ 					      realver.c_str());
+-              string uri = cw::util::ssprintf("%s/%s_changelog",
++              string uri = cw::util::ssprintf("%s/%s/changelog",
+                                               server.c_str(),
+                                               path.c_str());
+ 	      LOG_TRACE(logger,
+Index: b/src/view_changelog.cc
+===================================================================
+--- a/src/view_changelog.cc
++++ b/src/view_changelog.cc
+@@ -407,12 +407,12 @@
+   for(pkgCache::VerFileIterator vf=ver.FileList();
+       !vf.end() && !in_debian; ++vf)
+     if(!vf.File().end() && vf.File().Origin()!=NULL &&
+-       strcmp(vf.File().Origin(), "Debian")==0)
++       strcmp(vf.File().Origin(), "Ubuntu")==0)
+       in_debian=true;
+ 
+   if(!in_debian)
+     {
+-      show_message(_("You can only view changelogs of official Debian packages."),
++      show_message(_("You can only view changelogs of official Ubuntu packages."),
+ 		   NULL, cw::get_style("Error"));
+       return;
+     }

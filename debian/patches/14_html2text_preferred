@@ -1,0 +1,91 @@
+#! /bin/sh /usr/share/dpatch/dpatch-run
+## 14_html2text_preferred.dpatch by Steve Langasek <steve.langasek@ubuntu.com>
+##
+## All lines beginning with `## DP:' are a description of the patch.
+## DP: Switch back to using html2text, not elinks, which is not in main in
+## DP: Ubuntu
+
+@DPATCH@
+---
+ doc/aptitude-txt.style |   61 +++++++++++++++++++++++++++++++++++++++++++++++++
+ doc/html-to-text       |    8 +++++-
+ 2 files changed, 68 insertions(+), 1 deletion(-)
+
+--- /dev/null
++++ b/doc/aptitude-txt.style
+@@ -0,0 +1,61 @@
++
++/* these are the defaults uses in '-style pretty' mode */
++
++A.attributes.internal_link = NONE
++A.attributes.external_link = NONE
++
++OL.TYPE = 1
++OL.vspace.before = 1
++OL.vspace.after = 1
++OL.indents = 5
++UL.vspace.before = 1
++UL.vspace.after = 1
++UL.indents = 2
++DL.vspace.before = 1
++DL.vspace.after = 1
++DT.vspace.before = 1
++DIR.vspace.before = 1
++DIR.indents = 2
++MENU.vspace.before = 1
++MENU.vspace.after = 1
++DT.indent = 2
++DD.indent = 6
++I.attributes = UNDERLINE
++HR.marker = -
++H1.prefix =
++H2.prefix =
++H3.prefix =
++H4.prefix =
++H5.prefix =
++H6.prefix =
++H1.suffix =
++H2.suffix =
++H3.suffix =
++H4.suffix =
++H5.suffix =
++H6.suffix =
++H1.vspace.before = 2
++H2.vspace.before = 1
++H3.vspace.before = 1
++H4.vspace.before = 1
++H5.vspace.before = 1
++H6.vspace.before = 1
++H1.vspace.after = 1
++H2.vspace.after = 1
++H3.vspace.after = 1
++H4.vspace.after = 1
++H5.vspace.after = 1
++H6.vspace.after = 1
++TABLE.vspace.before = 1
++TABLE.vspace.after = 1
++CODE.vspace.before = 0
++CODE.vspace.after = 0
++BLOCKQUOTE.vspace.before = 1
++BLOCKQUOTE.vspace.after = 1
++/*PRE.vspace.before = 1
++PRE.vspace.after = 1*/
++PRE.indent.left = 0
++P.vspace.after = 1
++IMG.replace.noalt = [IMAGE]
++IMG.alt.prefix = \
++IMG.alt.suffix = \
+--- a/doc/html-to-text
++++ b/doc/html-to-text
+@@ -8,4 +8,10 @@
+ in="$1"
+ encoding=$2
+ 
+-exec elinks -dump -dump-charset $encoding -no-references -no-numbering "$in"
++#exec elinks -dump -dump-charset $encoding -no-references -no-numbering "$in"
++DIR=$(dirname $0)
++exec html2text -width 80 -utf8 -nobs -rcfile "$DIR/aptitude-txt.style" "$1"
++
++# html2text has -ascii and -utf8 encodings only
++# aptitude documentation is in iso-8859-1 (en) and utf-8 (rest of languages)
++# so we can assume utf-8 for all of them
